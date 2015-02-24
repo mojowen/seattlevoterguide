@@ -27,6 +27,7 @@ The site also `SASS` for styles and [Gridle](http://gridle.org) for responsivene
 
 There are a few other rake commands that might be helpful:
 
- * `rake build` will create the sharing redirection pages (stored in [`/sharing`](https://github.com/BusProject/Ballot/tree/gh-pages)) that are used for social sharing optimizations.
+ * `rake sharing` will create the sharing redirection pages (stored in [`/sharing`](https://github.com/BusProject/Ballot/tree/gh-pages)) that are used for social sharing optimizations.
  * `rake alderpeople` will import data from [`data/alderpeople.csv`](https://github.com/BusProject/Ballot/blob/gh-pages/data/alderpeople.csv) and use it to overwrite [`data/alderpeople.json`](https://github.com/BusProject/Ballot/blob/gh-pages/data/alderpeople.json)
  * `rake mayors` will build the [`mayors.md`](https://github.com/BusProject/Ballot/blob/gh-pages/mayors.md)... this is only marginally useful
+ * `rake all` build everything except the sass.
