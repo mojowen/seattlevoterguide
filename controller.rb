@@ -90,7 +90,7 @@ class Controller
 
         @meta_partial = set_meta({
             'url' => "#{base}/sharing/#{@filename}",
-            'image' => "#{base}#{alderman['photo']}",
+            'image' => "#{base}/#{alderman['photo']}",
             'title' => "Vote #{name} for #{office}",
             'description' => "Vote #{name} for #{office} - and you should too",
         })
