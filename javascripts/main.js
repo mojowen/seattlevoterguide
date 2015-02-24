@@ -336,7 +336,9 @@
                 if( document.location.hash[2] == '@') {
                     when_ready( function() {
                         specifyWard(document.location.hash.replace(/[^0-9]/g,''))
+                        var old_link = document.location.hash
                         document.location.hash = 'alderperson_list'
+                        document.location.hash = old_link
                     });
                 }
             }
