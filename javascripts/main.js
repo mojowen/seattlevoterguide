@@ -77,13 +77,18 @@
 
     /** Templates **/
     function renderAlerpeople(ward) {
+        var found = 0;
         alderperson_list.innerHTML = '<h3>Candidates for Ward '+ward+'</h3>';
 
         for (var i = alderpeople.length - 1; i >= 0; i--) {
             if( alderpeople[i].ward == ward ) {
                 alderperson_list.appendChild(renderAlderPerson(alderpeople[i]))
+                found += 1;
             }
         };
+        if( found < 1) {
+            alderperson_list.innerHTML = '<h3>No Runoff in Ward '+ward+'</h3>';
+        }
     }
     function renderAlderPerson(alderperson) {
         var container = document.createElement('div'),
