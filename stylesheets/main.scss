@@ -266,8 +266,7 @@ body {
 }
 #alderperson_list {
     .alderperson {
-        @include gridle(4);
-        @include gridle(6, tablet);
+        @include gridle(6);
         @include gridle(10, mobile);
         text-align: center;
         div.img {

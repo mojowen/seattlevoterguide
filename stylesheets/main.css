@@ -1719,7 +1719,7 @@ body {
   direction: ltr;
   padding-left: 20px;
   padding-right: 20px;
-  width: 33.33333%;
+  width: 50%;
   text-align: center;
   min-height: 160px;
   margin-bottom: 40px; }
@@ -1731,9 +1731,6 @@ body {
     #alderperson_list .alderperson {
       padding-left: 10px;
       padding-right: 10px; } }
-  @media screen and (max-width: 720px) {
-    #alderperson_list .alderperson {
-      width: 50%; } }
   @media screen and (max-width: 480px) {
     #alderperson_list .alderperson {
       width: 83.33333%; } }
