@@ -1,4 +1,5 @@
 require 'csv'
+require 'fileutils'
 require 'json'
 require 'webrick'
 
@@ -78,31 +79,27 @@ task :all do
 end
 
 task :sharing do
-    measures = measures_data().map do |measure|
-        measure['choices'].map do |choice,value|
-            value['choice'] = choice
-            value['title'] = measure['title']
-            value['description'] = measure['description']
-            value
-        end
-    end
     mayors, _ = mayor_data()
 
     build = {
         'mayor' => mayors,
-        'measure' => measures.flatten(1),
         'alderman' => JSON::parse(File.read('data/alderpeople.json'))
     }
 
+
+    FileUtils.rm_r 'sharing' if Dir.exists?("sharing")
+    Dir.mkdir "sharing"
+
     build.each do |type, the_list|
+        Dir.mkdir("sharing/#{type}") unless Dir.exists?("sharing/#{type}")
+
         the_list.each do |item|
             controller = Controller.new()
             controller.send(type, item)
-            puts "Rewriting #{controller.filename}"
+            puts "Creating #{controller.filename}"
             File.open("sharing/#{controller.filename}.html", 'w') do |fl|
                 fl.write(controller.render('sharing.erb'))
             end
-
         end
     end
 end
