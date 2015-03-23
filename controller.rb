@@ -46,8 +46,8 @@ class Controller
     def index
         @meta_partial = set_meta
         @mayors, @questions = mayor_data
-        @measures = measures_data
     end
+
     def mayor mayor
         base = "http://www.chicagovoterguide.org"
 
@@ -62,23 +62,7 @@ class Controller
                               "#{mayor['endorsements'].join(', ')}"),
         })
     end
-    def measure measure
-        base = "http://www.chicagovoterguide.org"
 
-        @anchor =  (measure['title'].downcase.gsub(' ','-')
-                    .gsub(/[^a-zA-Z0-9\-]/,''))
-        @filename = "measure/#{measure['choice']}-#{@anchor}"
-        @meta_partial = set_meta({
-            'url' => "#{base}/sharing/#{@filename}",
-            'image' => "#{base}/images/#{measure['choice']}.png",
-            'title' => "Vote #{measure['choice']} for #{measure['title']}",
-            'description' => ("I'm supporting #{measure['choice']} on "
-                              "#{measure['title']} Chicago - and so is "+
-                              "#{measure['endorsements'].join(', ')}. A "+
-                              "#{measure['choice']} Vote means: "+
-                              "#{measure['explanation']}"),
-        })
-    end
     def alderman alderman
         base = "http://www.chicagovoterguide.org"
 
@@ -95,7 +79,6 @@ class Controller
             'description' => "Vote #{name} for #{office} - and you should too",
         })
     end
-
 
     def render path
         ERB.new(File.read(path)).result(binding)
