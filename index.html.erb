@@ -13,7 +13,7 @@
     <div class="header">
       <h1>2015 Chicago City Election</h1>
       <h1 class="big">Voter Guide</h1>
-      <h1>Vote by Tuesday, February 24th</h1>
+      <h1>Vote by Tuesday, April 7th</h1>
     </div>
     <div class="section">
       <div class="inner">
@@ -25,11 +25,11 @@
             To avoid issues on Election Day, or if you are a first time voter, we recommend you bring some identification: Illinois driver’s license/state ID, utility bill, bank statement, or current college ID card.
           </p>
           <p>
-            If you are not already registered to vote, you may use Grace Period Voter Registration at early voting sites Feb. 9-21. Go to <a target="_blank" href="http://chicagoelections.com">chicagoelections.com</a> to find a location near you.
+            If you are not already registered to vote, you may use Grace Period Voter Registration at early voting sites from March 11th - 22nd. Go to <a target="_blank" href="http://chicagoelections.com">chicagoelections.com</a> to find a location near you.
           </p>
 
           <h3>When & Where You’ve Gotta Go</h3>
-          <p>Early voting is Feb. 9-21, and Election Day is Feb. 24. To find polling locations for Election Day or early voting go to <a target="_blank" href="http://chicagoelections.com">chicagoelections.com</a></p>
+          <p>Early voting is March 23rd through April 4th, and Election Day is April 7th. To find polling locations for Election Day or early voting go to <a target="_blank" href="http://chicagoelections.com">chicagoelections.com</a></p>
 
           <h3>Brought to you by</h3>
           <div class="grid-12 clear">
@@ -109,46 +109,6 @@
             </table>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="measures section">
-      <div class="inner">
-        <h1>Ballot Measures</h1>
-        <% @measures.each do |measure| %>
-          <div class="measure" id="!<%= measure['title'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>">
-              <h2><%= measure['title'] %></h2>
-              <h3>What it does</h3>
-              <p><%= measure['description'] %></p>
-              <% measure['choices'].each do |choice, info| %>
-                <div class="choice">
-                  <div class="thumb">
-                    <span class="fa <%= choice %> fa-thumbs-<%= choice == "yes" ? "up" : "down" %>"></span>
-                  </div>
-                  <div class="explanation">
-                    <h4>A <span class="yay-or-nay"><%= choice %></span> Vote Means...</h4>
-                    <p><%= info['explanation'] %></p>
-                  </div>
-                  <% unless info['endorsements'].empty? %>
-                    <div class="endorsements">
-                      <h5>Who says <span class="yay-or-nay"><%= choice %></span></h5>
-                      <ul>
-                        <% info['endorsements'].each do |endorsement| %>
-                          <li><%= endorsement %></li>
-                        <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-                  <a type="button" class="vote_for" data-name="<%= choice.upcase %>" data-link="/sharing/measure/<%= choice+'-'+measure['title'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>" data-office="<%= measure['title'] %>" onclick="endorsementWidget(this)">endorse</a>
-                </div>
-              <% end %>
-              <h2 class="recommendation">
-                Recommended:
-                <span class="fa <%= measure['recommendation'] %>  fa-thumbs-<%= measure['recommendation'] == "yes" ? "up" : "down" %>"></span>
-                <span class="yay-or-nay <%= measure['recommendation'] %>"><%= measure['recommendation'] %></span>
-              </h2>
-          </div>
-        <% end %>
-        <p class="grid-8 centered grid-tablet-12">* Note, these ballot measures are non-binding, advisory referenda</p>
       </div>
     </div>
     <div class="aldermanic section">
