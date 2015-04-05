@@ -202,7 +202,8 @@
 
         message = ["Vote",name,"for",office].join(' ')
 
-        track = name.toLowerCase().replace(/\s/g,'-')
+        track = (name.toLowerCase().replace(/[\uE000-\uF8FF]/g, '')
+                 .replace(/\s/g,'-'))
         if( ['yes','no'].indexOf(track) !== -1 ) {
             track +=  '-'+office.toLowerCase().replace(/\s/g,'-')
         }
@@ -216,7 +217,7 @@
             "https://www.facebook.com/sharer/sharer.php?u="+facebook_link)
         var tweet_params = ["text="+message,
                         "url="+escape(link+'&utm_medium=twitter'),
-                        "hashtags=#chivote2015",
+                        "hashtags=chivote2015",
                         "related=chicagovotes"].join('&')
         twitter.setAttribute('href',
             "https://twitter.com/intent/tweet?"+tweet_params)
