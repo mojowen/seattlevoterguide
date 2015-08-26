@@ -12,40 +12,21 @@ task :serve do
     server.start
 end
 
-task :mayors do
-    mayors, _ = mayor_data
-
-    markdown = [[]]
-
-    mayors.first.keys.each do |key|
-        markdown.first.push(key.to_s.capitalize)
-    end
-
-    markdown.push(Array.new(mayors.first.keys.length,'---'))
-    mayors.each do |mayor|
-        markdown.push([])
-        mayor.each do |k,v|
-            if k == "photo"
-                markdown.last.push("![](#{v})")
-            else
-                markdown.last.push(v.respond_to?('join') ? v.join(',') : v)
-            end
-        end
-    end
-
-    File.open('mayors.md','w') do |fl|
-        fl.write(markdown.map{ |r| "|#{r.join('|')}|" }.join("\n"))
-    end
-end
-
-task :alderpeople do
-    alderpeople = []
-    CSV.foreach("data/alderpeople.csv",
+task :candidates do
+    candidates = []
+    CSV.foreach("data/candidates.csv",
                 :headers => true) do |row|
-         alderpeople.push Hash[row.headers.map(&:downcase).zip(row.fields.map)]
+        fields = row.fields.map{ |fd| (fd || '').strip }
+        candidate = Hash[row.headers.map(&:downcase).map(&:strip).zip(fields)]
+        candidate['name'] = [candidate['first name'].capitalize,
+                             candidate['last name'].capitalize].join(' ')
+        candidate['photo'] = ("/images/counselors/"+
+                              "#{candidate['last name'].capitalize}."+
+                              "#{candidate['first name'].capitalize}.jpg")
+        candidates.push candidate
     end
-    File.open('data/alderpeople.json','w') do |fl|
-        fl.write(alderpeople.to_json)
+    File.open('data/candidates.json','w') do |fl|
+        fl.write(candidates.to_json)
     end
     Rake::Task["all"]
 end
@@ -74,18 +55,14 @@ task :all do
     """
     Rebuild all the HTML pages.
     """
-    Rake::Task["erb"].invoke(Dir.glob("*.html.erb"))
-    Rake::Task["sharing"].invoke()
+    Rake::Task["erb"].invoke Dir.glob("*.html.erb")
+    Rake::Task["sharing"].invoke
 end
 
 task :sharing do
-    mayors, _ = mayor_data()
-
     build = {
-        'mayor' => mayors,
-        'alderman' => JSON::parse(File.read('data/alderpeople.json'))
+        'counselors' => JSON::parse(File.read('data/candidates.json'))
     }
-
 
     FileUtils.rm_r 'sharing' if Dir.exists?("sharing")
     Dir.mkdir "sharing"

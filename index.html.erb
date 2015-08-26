@@ -7,134 +7,50 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
-  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="/images/FMTSnowflake.gif" type="image/x-icon" />
 <%= @meta_partial %>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1><%= @title %></h1>
+      <h1><%= @base.title %></h1>
       <h1 class="big">Voter Guide</h1>
-      <h1>Vote by <%= @election_day %></h1>
+      <h1>Vote by <%= @base.date %></h1>
     </div>
-    <div class="section">
+    <div class="section" id="counselors">
       <div class="inner">
-        <div class="about">
-          <p>This independent voter guide is designed to give you the quickest, most important information on your ballot and why it’s important to vote.</p>
-
-          <p>In Denver’s May 5th, 2015 city election, Denverites will vote for a Mayor, a City Councilperson to represent their district, two At-Large representatives to City Council who’ll represent the whole city, plus the Clerk &amp; Recorder (who runs elections &amp; issues marriage licenses) and the Auditor (ensures that the city government operates efficiently &amp; with integrity).</p>
-
-          <p><strong>Use the “find your district” look-up tool to pull up the candidates who are running for your area in Denver! And <a href=" http://neweracolorado.org/howtovotedenver/" target="_blank">click here</a> if you need more information on how to cast your ballot, or if you want the scoop on what City Council does.</strong></p>
-
-          <form id="search_form" class="grid-8 centered">
-              <input placeholder="Enter Your Address" type="text" name="address">
-              <button type="submit">Find Your District</button>
-          </form>
-          <p>Click "Find Your District", and then scroll down to see the candidates in your district</p>
-          <h3>About What’s Inside</h3>
-          <p>This voter guide compares candidates’ stances on some of the most pressing issues facing Denver, especially those facing young people. We asked the candidates if they’d raise Denver’s minimum wage to $15 (if they had the authority to), if they would support increasing protections for renters in Denver (we have some of the worst renters’ rights in the country), if they would support increased accountability for Denver police, and if they’d support putting a carbon tax on our utility bills to fund investments in energy efficiency, renewable energy and green jobs to fight climate change. The candidates answered yes/no questions on a survey of ours, and we supplemented that info with their explanation of “Why or why not?” when appropriate.</p>
-          <br />
-
-          <h3>Brought to you by</h3>
-          <div class="grid-12 clear">
-            <a target="_blank" href="htttp://neweracoloradoaction.org"><img class="grid-6 push-3" src="/images/logo.png"></a>
-          </div>
-          <p class="clear" style="margin-top: 100px;">New Era Colorado Action Fund is a local non-partisan, non-profit organization reinventing politics for our generation through innovative social and political action. We inspire young Coloradans to move our state forward, engaging our generation in our city- and state-level democracy. New Era Colorado Action Fund is a 501(c)4 non-profit organization. You can learn more or sign up to volunteer at <a target="_blank" href="http://neweracoloradoaction.org">NewEraColoradoAction.org</a>.</p>
-          <p style="font-size: 0.75em; text-align: center" class="grid-11 centered gutter-top clear">And you can find all the <a href="https://github.com/mojowen/denvervoterguide" target="_blank">code and whatever right here</a> and oh yeah it was built by <a target="_blank" href="http://twitter.com/sduncombe">this person</a>.</p>
+        <h1>Billings City Council</h1>
+        <form id="search_form" class="grid-8 centered">
+            <input placeholder="Enter Your Address" type="text" name="address">
+            <button type="submit">Find Your District</button>
+        </form>
+        <div class="map_container">
+          <div id="map_canvas"></div>
         </div>
-      </div>
-  </div>
-  <div class="mayor section">
-    <div class="inner">
-      <h1>Mayor of Denver</h1>
-      <h3>What they do</h3>
-      <p>Signs bills into law (or not), writes the city budget, appoints chairs of offices like Parks and Rec, Public Works, etc...</p>
-      <% @mayors.each do |mayor| %>
-        <div class="candidate" id="!<%= mayor["name"].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>">
-          <h2><%= mayor["name"] %></h2>
-          <div class="bio">
-            <div class="img" style="background-image: url('<%= mayor["photo"] %>');" ></div>
-            <div class="social">
-              <% if mayor['website'] %>
-                <a target="_blank" class="fa fa-link" href="<%= mayor['website'] %>">
-                  Website
-                </a>
-              <% end %>
-              <% if mayor['facebook'] %>
-                <a target="_blank" class="fa fa-facebook-square" href="<%= mayor['facebook'] %>">
-                Facebook
-                </a>
-              <% end %>
-            </div>
-          </div>
-          <p><em><%= mayor['bio'] %></em></p>
-          <p class="clear"><%= mayor['description'] %></p>
-          <a class="vote_for" data-name="<%= mayor["name"] %>" data-link="/sharing/mayor/<%= mayor["name"].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>" data-office="Mayor of Denver" onclick="endorsementWidget(this)">endorse</a>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="section" id="counselors">
-    <div class="inner">
-      <h1>Denver City Council</h1>
-      <div class="map_container">
-        <div id="map_canvas"></div>
-      </div>
-      <% @districts.each do |district| %>
-        <div class="district" data-district="<%= district['district'] %>">
-          <% if district['district'] == 'At-large' %>
-            <h3>At-large District</h3>
-          <% else %>
-            <h3>District <%= district['district'] %>:</h3>
-          <% end %>
-          <p><%= district['description'] %></p>
-          <% district['counselors'].each do |counselor| %>
-            <div class="counselor <%= "row-#{[nil,1,2][district['counselors'].length]}" if district['counselors'].length < 3 %>">
-              <h2><%= counselor['name'] %></h2>
-              <div class="img" style="background-image: url('<%= counselor["photo"] %>');" ></div>
-              <% if counselor['website'] %>
-                <a target="_blank" class="fa fa-link" href="<%= counselor['website'] %>">Website</a>
-              <% end %>
-              <% if counselor['facebook'] %>
-                <a target="_blank" class="fa fa-facebook-square" href="<%= counselor['facebook'] %>">Facebook</a>
-              <% end %>
-              <div class="bio"><%= counselor['bio'] %></div>
-              <a class="vote_for" data-name="<%= counselor["name"] %>" data-link="/sharing/counselor/<%= district['district'] %>-<%= counselor['name'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>" data-office="Denver City Council" onclick="endorsementWidget(this)">endorse</a>
-            </div>
-          <% end %>
-          <div class="issues">
-            <div class="scroll">
-              <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <% district['counselors'].slice(0, 5).each do |counselor| %>
-                    <th>
-                      <div class="img" style="background-image: url('<%= counselor["photo"] %>');" ></div>
-                      <h4><%= counselor["name"] %></h4>
-                    </th>
-                  <% end %>
-                </tr>
-              </thead>
-              <tbody>
-                <% @questions.each do |question| %>
-                  <tr>
-                    <td class="question"><%= question.capitalize.gsub('denver','Denver') %></td>
-                      <% district['counselors'].slice(0, 5).each do |counselor| %>
-                        <td><%= counselor[question.downcase] %></td>
-                      <% end %>
-                  </tr>
+        <% @districts.each do |district, candidates| %>
+          <div class="district" data-district="<%= district %>">
+            <h3>District <%= district %>:</h3>
+            <% candidates.each do |counselor| %>
+              <div class="counselor <%= "row-#{[nil,1,2][canddates.length]}" if candidates.length < 3 %>">
+                <h2><%= counselor['name'] %></h2>
+                <div class="img" style="background-image: url('<%= counselor["photo"] %>');" ></div>
+                <% unless counselor['website'].empty? %>
+                  <a target="_blank" class="fa fa-link" href="<%= counselor['website'] %>">Website</a>
                 <% end %>
-              </tbody>
-              </table>
-            </div>
-            <% if district['counselors'].length > 5 %>
+                <% unless counselor['facebook'].empty? %>
+                  <a target="_blank" class="fa fa-facebook-square" href="<%= counselor['facebook'] %>">Facebook</a>
+                <% end %>
+                <div class="bio"><%= counselor['why'] %></div>
+                <a class="vote_for" data-name="<%= counselor["name"] %>" data-link="/sharing/counselor/<%= district %>-<%= counselor['name'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>" data-office="Billings City Council" onclick="endorsementWidget(this)">endorse</a>
+              </div>
+            <% end %>
+            <div class="issues">
               <div class="scroll">
                 <table>
                 <thead>
                   <tr>
                     <th></th>
-                    <% district['counselors'].slice(5, 100).each do |counselor| %>
+                    <% candidates.each do |counselor| %>
                       <th>
                         <div class="img" style="background-image: url('<%= counselor["photo"] %>');" ></div>
                         <h4><%= counselor["name"] %></h4>
@@ -145,47 +61,38 @@
                 <tbody>
                   <% @questions.each do |question| %>
                     <tr>
-                      <td class="question"><%= question.capitalize.gsub('denver','Denver') %></td>
-                        <% district['counselors'].slice(5, 100).each do |counselor| %>
-                          <td><%= counselor[question.downcase] %></td>
+                      <td class="question"><%= question.capitalize %></td>
+                        <% candidates.each do |counselor| %>
+                          <td>
+                            <%= counselor[question.downcase] %>
+                            <% unless counselor[question.downcase+'--moreinfo'].empty? %>
+                              <a class="read--more" href="#">Read More</a>
+                            <% end %>
+                          </td>
                         <% end %>
                     </tr>
                   <% end %>
                 </tbody>
                 </table>
               </div>
-            <% end %>
+            </div>
           </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="section">
+      <div class="inner">
+        <div class="about">
+          <h3>Brought to you by</h3>
+          <div class="grid-12 clear">
+            <a target="_blank" href="http://forwardmontana.org/"><img class="grid-6 push-3" src="/images/logo.png"></a>
+          </div>
+          <p style="font-size: 0.75em; text-align: center" class="grid-11 centered gutter-top clear">And you can find all the <a href="<%= @base.repo %>" target="_blank">code and whatever right here</a> and oh yeah it was built by <a target="_blank" href="http://twitter.com/sduncombe">this person</a>.</p>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
-  <div class="section" id="other">
-    <div class="inner">
-      <h1 id="Clerk & Recorder">Clerk and Recorder</h1>
-      <% @other_offices['Clerk & Recorder'].each do |candidate| %>
-        <div class="candidate" id="!<%= candidate["name"].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>">
-          <h2><%= candidate["name"] %></h2>
-          <div class="bio">
-            <div class="img" style="background-image: url('<%= candidate["photo"] %>');" ></div>
-          </div>
-          <p><%= candidate['bio'] %></p>
-          <a class="vote_for" data-name="<%= candidate["name"] %>" data-link="/sharing/other/<%= candidate["name"].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>" data-office="Clerk and Recorder" onclick="endorsementWidget(this)">endorse</a>
-        </div>
-      <% end %>
-      <h1 class="clear" id="Auditor">City Auditor</h1>
-      <% @other_offices['Auditor'].each do |candidate| %>
-        <div class="candidate" id="!<%= candidate["name"].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>">
-          <h2><%= candidate["name"] %></h2>
-          <div class="bio">
-            <div class="img" style="background-image: url('<%= candidate["photo"] %>');" ></div>
-          </div>
-          <p><%= candidate['bio'] %></p>
-          <a class="vote_for" data-name="<%= candidate["name"] %>" data-link="/sharing/other/<%= candidate["name"].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>" data-office="City Auditor" onclick="endorsementWidget(this)">endorse</a>
-        </div>
-      <% end %>
-    </div>
-  </div>
+
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
   <script type="text/javascript" src="/javascripts/turf.min.js"></script>
   <script type="text/javascript" src="/javascripts/tinyxhr.js"></script>
@@ -201,25 +108,6 @@
     ga('send', 'pageview');
 
   </script>
-
-  <div id="popup_config" data-url="http://www.denvervoterguide.org/form.html" data-key="1MyYumXw-2x1QSho1RMYLrfYJAWaA8kv3b9idjHDTmKc" data-phone_name="entry.1180421525" data-zip_name="entry.229449272" data-optin_name="entry.1797815415"></div><script src="http://www.denvervoterguide.org/javascripts/popup.js"></script>
-
-  <script>(function() {
-    var _fbq = window._fbq || (window._fbq = []);
-    if (!_fbq.loaded) {
-      var fbds = document.createElement('script');
-      fbds.async = true;
-      fbds.src = '//connect.facebook.net/en_US/fbds.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(fbds, s);
-      _fbq.loaded = true;
-    }
-    _fbq.push(['addPixelId', '1492146151045273']);
-  })();
-  window._fbq = window._fbq || [];
-  window._fbq.push(['track', 'PixelInitialized', {}]);
-  </script>
-  <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=1492146151045273&amp;ev=PixelInitialized" /></noscript>
 
 </body>
 </html>

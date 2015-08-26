@@ -1,5 +1,5 @@
 (function() {
-    var geocoder = new google.maps.Geocoder(),
+    geocoder = new google.maps.Geocoder(),
         districts = false,
         callback = false
 
@@ -32,19 +32,31 @@
     }
     function new_map(center) {
         map_canvas.style.display = 'block';
-        var map = new google.maps.Map(map_canvas, {
+        map = new google.maps.Map(map_canvas, {
             zoom: 12,
             center: new google.maps.LatLng(center[1], center[0]),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            scrollwheel: false,
+            // scrollwheel: false,
             overviewMapControl: false,
             streetViewControl: false,
-            zoomControl: false,
+            // zoomControl: false,
             panControl: false,
             mapTypeControl: false,
-            scaleControl: false,
+            // scaleControl: false,
             draggable: true
         });
+
+        // for (var i in districts.features) {
+        //     map.data.addGeoJson(districts.features[i]);
+        // }
+        map.data.setStyle({
+            "strokeWeight": 1,
+            "color": "red",
+            "fillColor": "red",
+            "fillOpacity": 0.1,
+            "strokeColor": "red"
+        });
+
         return map;
     }
     function mapIt(district, center, home) {
@@ -70,7 +82,7 @@
         var districts = counselors.querySelectorAll('.district')
         for (var i = districts.length - 1; i >= 0; i--) {
             var div_district = districts[i].getAttribute('data-district')
-            if( div_district !== district && div_district != 'At-large') {
+            if( div_district !== district ) {
                 districts[i].style.display = 'none';
             }
         };
@@ -250,7 +262,7 @@
 
         search_form.onsubmit = function() { searchSubmit.apply(this); return false; }
 
-        tinyGET('/data/district_shapes.json',{},
+        tinyGET('/data/wards.json',{},
             function(data) { districts = data; when_ready(); });
 
         if( document.location.hash.length > 0 ) {

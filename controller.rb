@@ -1,16 +1,13 @@
 require 'json'
 require 'erb'
 
-def mayor_data
-    mayors = JSON::parse(File.read('data/mayors.json'))
-    titles = mayors.first.keys.reject{ |k| k[-1] != "?" }.map(&:to_s)
-
-    return mayors, titles
+def candidate_data
+    candidates = JSON::parse(File.read('data/candidates.json'))
+    questions = candidates.first.keys.reject{ |k| k[-1] != "?" }.map(&:to_s)
+    districts = candidates.group_by{ |ca| ca['ward'] }
+    return districts, questions
 end
 
-def measures_data
-    return JSON::parse(File.read('data/measures.json'))
-end
 def _get_ordinal n
     n = n.to_i
     s = ["th","st","nd","rd"]

@@ -195,6 +195,7 @@ body {
     }
     .bio {
         margin: 20px 0;
+        text-align: left;
     }
     min-height: 300px;
     &.row-1 { @include gridle_push(4); }

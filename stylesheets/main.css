@@ -1628,7 +1628,8 @@ body {
     .counselor a:before {
       margin-right: 2px; }
   .counselor .bio {
-    margin: 20px 0; }
+    margin: 20px 0;
+    text-align: left; }
   .counselor.row-1 {
     left: 33.33333%; }
   .counselor.row-2 {
