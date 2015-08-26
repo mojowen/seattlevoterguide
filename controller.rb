@@ -20,29 +20,25 @@ end
 
 class Controller
 
+    def initialize
+        self.load_config
+    end
+
     def set_meta meta_data=nil
-        meta_data ||= {}
-
-        default_description = ("Vote by Tuesday, April 7th in the Chicago "+
-                               "City Runoff Election. Check out our voter "+
-                               "guide to see who and what will be on your "+
-                               "ballot.")
-
-        default_title = '2015 Chicago Voter Guide'
-
-        default_image = 'http://www.chicagovoterguide.org/images/sharable.png'
-
-        @meta = {
-            "title" => meta_data['title'] || default_title,
-            "description" => meta_data['description'] || default_description,
-            "image" => ("#{meta_data['image'] || default_image}"),
-            "url" => ("#{meta_data['url'] || 'http://www.chicagovoterguide.org'}")
-        }
+        base_hash = Hash[ @base.to_h.map{ |k,v| [k.to_s, v] } ]
+        @meta = base_hash.update(meta_data || {})
+        unless @meta['image'].index(@base.url)
+            @meta['image'] = URI.join(@base.url, @meta['image'])
+        end
         render('_meta.erb')
     end
 
     def filename
         @filename
+    end
+
+    def load_config
+        @base = OpenStruct.new JSON::parse(File.read('data/config.json'))
     end
 
     def index
@@ -51,13 +47,11 @@ class Controller
     end
 
     def mayor mayor
-        base = "http://www.chicagovoterguide.org"
-
         @anchor = mayor["name"].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'')
         @filename = "mayor/#{@anchor}"
         @meta_partial = set_meta({
-            'url' => "#{base}/sharing/#{@filename}",
-            'image' => "#{base}#{mayor['photo']}",
+            'url' => "#{@base.url}/sharing/#{@filename}",
+            'image' => "#{@base.url}#{mayor['photo']}",
             'title' => "Vote for #{mayor['name']} for Mayor of Chicago",
             'description' => ("I'm supporting #{mayor['name']} for Mayor of "+
                               "Chicago - and so is "+
@@ -66,8 +60,6 @@ class Controller
     end
 
     def alderman alderman
-        base = "http://www.chicagovoterguide.org"
-
         name = [alderman['first'], alderman['last']].join(' ')
         link = name.downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'')
         office = "#{_get_ordinal(alderman['ward'])} Ward Alderman"
@@ -75,8 +67,8 @@ class Controller
         @filename = "alderman/#{alderman['ward']}-#{link}"
 
         @meta_partial = set_meta({
-            'url' => "#{base}/sharing/#{@filename}",
-            'image' => "#{base}/#{alderman['photo']}",
+            'url' => "#{@base.url}/sharing/#{@filename}",
+            'image' => "#{@base.url}/#{alderman['photo']}",
             'title' => "Vote #{name} for #{office}",
             'description' => "Vote #{name} for #{office} - and you should too",
         })

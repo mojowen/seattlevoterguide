@@ -8,7 +8,7 @@
     (function() {
         var anchor = "<%= @anchor %>",
             redirect = [
-                "http://www.chicagovoterguide.org",
+                <%= @base.url.to_json %>,
                 document.location.search,
                 "#!",
                 anchor
