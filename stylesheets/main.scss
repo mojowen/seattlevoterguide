@@ -86,7 +86,7 @@ body {
     padding: 30px 0;
     @include clear();
     .scroll {
-        overflow-y: scroll;
+        overflow-y: auto;
         margin: 20px 0 50px;
         table {
             th .img {

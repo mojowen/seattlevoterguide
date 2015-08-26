@@ -1396,7 +1396,7 @@ body {
     clear: both;
     display: block; }
   .issues .scroll {
-    overflow-y: scroll;
+    overflow-y: auto;
     margin: 20px 0 50px; }
     .issues .scroll table th .img {
       width: 40px;

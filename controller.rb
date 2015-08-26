@@ -43,33 +43,19 @@ class Controller
 
     def index
         @meta_partial = set_meta
-        @mayors, @questions = mayor_data
+        @districts, @questions = candidate_data
     end
 
-    def mayor mayor
-        @anchor = mayor["name"].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'')
-        @filename = "mayor/#{@anchor}"
-        @meta_partial = set_meta({
-            'url' => "#{@base.url}/sharing/#{@filename}",
-            'image' => "#{@base.url}#{mayor['photo']}",
-            'title' => "Vote for #{mayor['name']} for Mayor of Chicago",
-            'description' => ("I'm supporting #{mayor['name']} for Mayor of "+
-                              "Chicago - and so is "+
-                              "#{mayor['endorsements'].join(', ')}"),
-        })
-    end
-
-    def alderman alderman
-        name = [alderman['first'], alderman['last']].join(' ')
+    def counselors counselor
+        name = counselor['name']
         link = name.downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'')
-        office = "#{_get_ordinal(alderman['ward'])} Ward Alderman"
-        @anchor =  "@#{alderman['ward']}"
-        @filename = "alderman/#{alderman['ward']}-#{link}"
-
+        office = "#{_get_ordinal(counselor['ward'])} Ward counselor"
+        @anchor =  "@#{counselor['ward']}"
+        @filename = "counselors/#{counselor['ward']}-#{link}"
         @meta_partial = set_meta({
             'url' => "#{@base.url}/sharing/#{@filename}",
-            'image' => "#{@base.url}/#{alderman['photo']}",
-            'title' => "Vote #{name} for #{office}",
+            'image' => "#{@base.url}/#{counselor['photo']}",
+            'title' => "Vote #{name} for Ward #{office}",
             'description' => "Vote #{name} for #{office} - and you should too",
         })
     end

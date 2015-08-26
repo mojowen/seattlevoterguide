@@ -126,7 +126,7 @@
             track +=  '-'+office.toLowerCase().replace(/\s/g,'-')
         }
 
-        link = "http://www.denvervoterguide.org"+link
+        link = baseurl+link
         link += '?utm_source=endorse'
         link += '&utm_campaign='+track
 
@@ -192,12 +192,12 @@
         map_canvas.innerHTML = "";
 
         var address = this.address.value;
-        if( address.toLowerCase().search('denver') === -1 ) {
-            address += ' Denver CO'
+        if( address.toLowerCase().search(city.toLowerCase()) === -1 ) {
+            address += [null, city, state_abv].join(' ')
         }
-        if( address.toLowerCase().search('il') === -1 ||
-                address.toLowerCase().search('illinois') === -1 ) {
-            address += ' CO'
+        if( address.search(state_abv) === -1 ||
+                address.toLowerCase().search(state.toLowerCase()) === -1 ) {
+            address += [null, state_abv].join(' ')
         }
 
         geocoder.geocode({
@@ -262,7 +262,7 @@
                     when_ready( function() {
                         specifyWard(document.location.hash.replace(/[^0-9]/g,''))
                         var old_link = document.location.hash
-                        document.location.hash = 'counselors'
+                        document.location.hash = 'counselors' // Hack to make it scroll
                         document.location.hash = old_link
                     });
                 }
