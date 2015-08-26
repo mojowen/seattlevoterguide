@@ -13,7 +13,7 @@
 .parent, .parent-mobile, .parent-tablet {
   zoom: 1; }
 
-.push-0, .push-1, .push-2, .push-3, .push-4, .push-5, .push-6, .push-7, .push-8, .push-9, .push-10, .push-11, .push-12, .push-mobile-0, .push-mobile-1, .push-mobile-2, .push-mobile-3, .push-mobile-4, .push-mobile-5, .push-mobile-6, .push-mobile-7, .push-mobile-8, .push-mobile-9, .push-mobile-10, .push-mobile-11, .push-mobile-12, .push-tablet-0, .push-tablet-1, .push-tablet-2, .push-tablet-3, .push-tablet-4, .push-tablet-5, .push-tablet-6, .push-tablet-7, .push-tablet-8, .push-tablet-9, .push-tablet-10, .push-tablet-11, .push-tablet-12, .pull-0, .pull-1, .pull-2, .pull-3, .pull-4, .pull-5, .pull-6, .pull-7, .pull-8, .pull-9, .pull-10, .pull-11, .pull-12, .pull-mobile-0, .pull-mobile-1, .pull-mobile-2, .pull-mobile-3, .pull-mobile-4, .pull-mobile-5, .pull-mobile-6, .pull-mobile-7, .pull-mobile-8, .pull-mobile-9, .pull-mobile-10, .pull-mobile-11, .pull-mobile-12, .pull-tablet-0, .pull-tablet-1, .pull-tablet-2, .pull-tablet-3, .pull-tablet-4, .pull-tablet-5, .pull-tablet-6, .pull-tablet-7, .pull-tablet-8, .pull-tablet-9, .pull-tablet-10, .pull-tablet-11, .pull-tablet-12, .measure .explanation, .measure .endorsements, #search_form button {
+.push-0, .push-1, .push-2, .push-3, .push-4, .push-5, .push-6, .push-7, .push-8, .push-9, .push-10, .push-11, .push-12, .push-mobile-0, .push-mobile-1, .push-mobile-2, .push-mobile-3, .push-mobile-4, .push-mobile-5, .push-mobile-6, .push-mobile-7, .push-mobile-8, .push-mobile-9, .push-mobile-10, .push-mobile-11, .push-mobile-12, .push-tablet-0, .push-tablet-1, .push-tablet-2, .push-tablet-3, .push-tablet-4, .push-tablet-5, .push-tablet-6, .push-tablet-7, .push-tablet-8, .push-tablet-9, .push-tablet-10, .push-tablet-11, .push-tablet-12, .pull-0, .pull-1, .pull-2, .pull-3, .pull-4, .pull-5, .pull-6, .pull-7, .pull-8, .pull-9, .pull-10, .pull-11, .pull-12, .pull-mobile-0, .pull-mobile-1, .pull-mobile-2, .pull-mobile-3, .pull-mobile-4, .pull-mobile-5, .pull-mobile-6, .pull-mobile-7, .pull-mobile-8, .pull-mobile-9, .pull-mobile-10, .pull-mobile-11, .pull-mobile-12, .pull-tablet-0, .pull-tablet-1, .pull-tablet-2, .pull-tablet-3, .pull-tablet-4, .pull-tablet-5, .pull-tablet-6, .pull-tablet-7, .pull-tablet-8, .pull-tablet-9, .pull-tablet-10, .pull-tablet-11, .pull-tablet-12, #search_form button, .counselor.row-1, .counselor.row-2 {
   position: relative; }
 
 .container {
@@ -26,7 +26,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-.grid-0, .grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .grid-7, .grid-8, .grid-9, .grid-10, .grid-11, .grid-12, .grid-mobile-0, .grid-mobile-1, .grid-mobile-2, .grid-mobile-3, .grid-mobile-4, .grid-mobile-5, .grid-mobile-6, .grid-mobile-7, .grid-mobile-8, .grid-mobile-9, .grid-mobile-10, .grid-mobile-11, .grid-mobile-12, .grid-tablet-0, .grid-tablet-1, .grid-tablet-2, .grid-tablet-3, .grid-tablet-4, .grid-tablet-5, .grid-tablet-6, .grid-tablet-7, .grid-tablet-8, .grid-tablet-9, .grid-tablet-10, .grid-tablet-11, .grid-tablet-12, .container .header, .container .section, .container .section .inner, .about, .issues, .candidate, .candidate .social, .candidate .bio, .candidate .endorsements, .measure, .measure .choice, .measure .thumb, .measure .explanation, .measure .endorsements, #search_form, #search_form input, #search_form button, #alderperson_list .alderperson, .map_container {
+.grid-0, .grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .grid-7, .grid-8, .grid-9, .grid-10, .grid-11, .grid-12, .grid-mobile-0, .grid-mobile-1, .grid-mobile-2, .grid-mobile-3, .grid-mobile-4, .grid-mobile-5, .grid-mobile-6, .grid-mobile-7, .grid-mobile-8, .grid-mobile-9, .grid-mobile-10, .grid-mobile-11, .grid-mobile-12, .grid-tablet-0, .grid-tablet-1, .grid-tablet-2, .grid-tablet-3, .grid-tablet-4, .grid-tablet-5, .grid-tablet-6, .grid-tablet-7, .grid-tablet-8, .grid-tablet-9, .grid-tablet-10, .grid-tablet-11, .grid-tablet-12, .container .header, .container .section, .container .section .inner, .about, .issues, .candidate, .candidate .social, .candidate .bio, #search_form, #search_form input, #search_form button, .counselor, .map_container {
   display: inline-block;
   min-height: 1px;
   -webkit-box-sizing: border-box;
@@ -187,6 +187,38 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+q:before, q:after {
+  content: "";
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
 h1 {
   color: #d81b59;
   font-size: 2em;
@@ -233,6 +265,12 @@ a:hover, a:active {
 a, a:visited {
   color: #ab1546;
   text-decoration: none; }
+
+em {
+  font-style: italic; }
+
+strong {
+  font-weight: bold; }
 
 @media screen and (max-width: 400px) {
   @-ms-viewport {
@@ -1357,28 +1395,31 @@ body {
     content: "";
     clear: both;
     display: block; }
-  @media screen and (max-width: 720px) {
-    .issues .scroll {
-      overflow-y: scroll; } }
-  .issues .scroll table th .img {
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background: transparent top center no-repeat;
-    background-size: cover;
-    margin-left: 10px; }
-  .issues .scroll table tr:nth-child(even) td {
-    background: #99ddec; }
-  .issues .scroll table td:first-child {
-    text-align: left;
-    font-weight: bold;
-    padding-left: 10px;
-    padding-right: 0;
-    min-width: 200px; }
-  .issues .scroll table td {
-    line-height: 1.4em;
-    padding: 20px;
-    text-align: center; }
+  .issues .scroll {
+    overflow-y: scroll;
+    margin: 20px 0 50px; }
+    .issues .scroll table th .img {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      background: transparent top center no-repeat;
+      background-size: cover;
+      margin: 0 auto;
+      display: block; }
+    .issues .scroll table th h4 {
+      font-size: 10px; }
+    .issues .scroll table tr:nth-child(even) td {
+      background: #99ddec; }
+    .issues .scroll table td:first-child {
+      text-align: left;
+      font-weight: bold;
+      padding-left: 10px;
+      padding-right: 0;
+      min-width: 200px; }
+    .issues .scroll table td {
+      line-height: 1.4em;
+      padding: 20px;
+      text-align: center; }
 
 .candidate, .measure {
   padding: 20px 0; }
@@ -1394,7 +1435,7 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   width: 50%;
-  min-height: 320px;
+  min-height: 470px;
   margin-bottom: 50px; }
   @media screen and (max-width: 480px) {
     .candidate {
@@ -1446,15 +1487,15 @@ body {
     .candidate .social a {
       font-size: 10px;
       margin: 4px auto; }
-  .candidate .bio, .candidate .endorsements {
-    padding-left: 0;
-    padding-right: 0; }
   .candidate .bio {
+    padding-left: 0;
+    padding-right: 0;
+    min-height: 170px;
     float: left;
     direction: ltr;
     padding-left: 20px;
     padding-right: 20px;
-    width: 41.66667%; }
+    width: 50%; }
     @media screen and (max-width: 480px) {
       .candidate .bio {
         padding-left: 5px;
@@ -1465,31 +1506,6 @@ body {
         padding-right: 10px; } }
     @media screen and (max-width: 480px) {
       .candidate .bio {
-        width: 100%; } }
-  .candidate .endorsements {
-    float: left;
-    direction: ltr;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 58.33333%;
-    padding-top: 10px; }
-    @media screen and (max-width: 480px) {
-      .candidate .endorsements {
-        display: block !important;
-        float: none !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        clear: both !important; } }
-    @media screen and (max-width: 480px) {
-      .candidate .endorsements {
-        padding-left: 5px;
-        padding-right: 5px; } }
-    @media screen and (max-width: 720px) {
-      .candidate .endorsements {
-        padding-left: 10px;
-        padding-right: 10px; } }
-    @media screen and (max-width: 480px) {
-      .candidate .endorsements {
         width: 100%; } }
   .candidate .img {
     width: 100px;
@@ -1498,147 +1514,6 @@ body {
     background: transparent top center no-repeat;
     background-size: cover;
     margin: 0 auto; }
-
-.measure {
-  float: left;
-  direction: ltr;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 100%; }
-  @media screen and (max-width: 480px) {
-    .measure {
-      padding-left: 5px;
-      padding-right: 5px; } }
-  @media screen and (max-width: 720px) {
-    .measure {
-      padding-left: 10px;
-      padding-right: 10px; } }
-  .measure .choice {
-    margin: 30px 0;
-    float: left;
-    direction: ltr;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 100%; }
-    @media screen and (max-width: 480px) {
-      .measure .choice {
-        padding-left: 5px;
-        padding-right: 5px; } }
-    @media screen and (max-width: 720px) {
-      .measure .choice {
-        padding-left: 10px;
-        padding-right: 10px; } }
-  .measure .thumb {
-    float: left;
-    direction: ltr;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 8.33333%; }
-    @media screen and (max-width: 480px) {
-      .measure .thumb {
-        padding-left: 5px;
-        padding-right: 5px; } }
-    @media screen and (max-width: 720px) {
-      .measure .thumb {
-        padding-left: 10px;
-        padding-right: 10px; } }
-    @media screen and (max-width: 480px) {
-      .measure .thumb {
-        display: block !important;
-        float: none !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        clear: both !important; } }
-    @media screen and (max-width: 480px) {
-      .measure .thumb {
-        padding-bottom: 20px; } }
-  .measure .explanation {
-    float: left;
-    direction: ltr;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 50%; }
-    @media screen and (max-width: 480px) {
-      .measure .explanation {
-        padding-left: 5px;
-        padding-right: 5px; } }
-    @media screen and (max-width: 720px) {
-      .measure .explanation {
-        padding-left: 10px;
-        padding-right: 10px; } }
-    @media screen and (max-width: 720px) {
-      .measure .explanation {
-        width: 91.66667%; } }
-    @media screen and (max-width: 480px) {
-      .measure .explanation {
-        width: 100%; } }
-    @media screen and (max-width: 720px) {
-      .measure .explanation {
-        left: 8.33333%; } }
-    @media screen and (max-width: 480px) {
-      .measure .explanation {
-        left: 0%; } }
-  .measure .endorsements {
-    float: left;
-    direction: ltr;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 41.66667%; }
-    @media screen and (max-width: 480px) {
-      .measure .endorsements {
-        padding-left: 5px;
-        padding-right: 5px; } }
-    @media screen and (max-width: 720px) {
-      .measure .endorsements {
-        padding-left: 10px;
-        padding-right: 10px; } }
-    @media screen and (max-width: 720px) {
-      .measure .endorsements {
-        width: 83.33333%; } }
-    @media screen and (max-width: 720px) {
-      .measure .endorsements {
-        left: 16.66667%; } }
-    @media screen and (max-width: 480px) {
-      .measure .endorsements {
-        left: 0%; } }
-    @media screen and (max-width: 480px) {
-      .measure .endorsements {
-        width: 100%; } }
-    @media screen and (max-width: 480px) {
-      .measure .endorsements {
-        margin-bottom: 40px; } }
-  .measure h4 {
-    color: #26aac6; }
-  .measure h2 span, .measure h4 span, .measure h5 span {
-    text-transform: uppercase; }
-  .measure span.fa {
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    margin: 10px 0 0 -30px;
-    text-align: center;
-    font-size: 30px;
-    color: white; }
-    .measure span.fa.no {
-      background: #7d1034; }
-    .measure span.fa.yes {
-      background: #2f8f44; }
-    .measure span.fa:before {
-      line-height: 50px; }
-  .measure .recommendation {
-    text-align: left; }
-    .measure .recommendation span.fa {
-      margin: 0; }
-    .measure .recommendation span.yay-or-nay.no {
-      color: #7d1034; }
-    .measure .recommendation span.yay-or-nay.yes {
-      color: #2f8f44; }
-    @media screen and (max-width: 480px) {
-      .measure .recommendation {
-        text-align: center; }
-        .measure .recommendation span {
-          display: block;
-          margin: 30px auto !important; } }
 
 #search_form {
   display: block !important;
@@ -1714,27 +1589,31 @@ body {
     clear: both;
     display: block; }
 
-#alderperson_list .alderperson {
+.counselor {
   float: left;
   direction: ltr;
   padding-left: 20px;
   padding-right: 20px;
-  width: 50%;
+  width: 33.33333%;
   text-align: center;
   min-height: 160px;
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+  min-height: 300px; }
   @media screen and (max-width: 480px) {
-    #alderperson_list .alderperson {
+    .counselor {
       padding-left: 5px;
       padding-right: 5px; } }
   @media screen and (max-width: 720px) {
-    #alderperson_list .alderperson {
+    .counselor {
       padding-left: 10px;
       padding-right: 10px; } }
+  @media screen and (max-width: 720px) {
+    .counselor {
+      width: 50%; } }
   @media screen and (max-width: 480px) {
-    #alderperson_list .alderperson {
+    .counselor {
       width: 83.33333%; } }
-  #alderperson_list .alderperson div.img {
+  .counselor div.img {
     width: 60px;
     height: 60px;
     border-radius: 100%;
@@ -1743,17 +1622,20 @@ body {
     min-height: 60px;
     margin: 0 auto;
     display: block; }
-  #alderperson_list .alderperson a {
+  .counselor a {
     font-size: 12px;
     padding: 0 4px; }
-    #alderperson_list .alderperson a:before {
+    .counselor a:before {
       margin-right: 2px; }
-#alderperson_list h3 {
-  text-align: center; }
-#alderperson_list:after, #alderperson_list:before {
-  content: "";
-  clear: both;
-  display: block; }
+  .counselor .bio {
+    margin: 20px 0; }
+  .counselor.row-1 {
+    left: 33.33333%; }
+  .counselor.row-2 {
+    left: 16.66667%; }
+    @media screen and (max-width: 720px) {
+      .counselor.row-2 {
+        left: 0%; } }
 
 .map_container {
   margin: 50px 0 0;
@@ -1801,7 +1683,6 @@ body {
 
 a.vote_for {
   position: absolute;
-  bottom: -10px;
   left: 50%;
   width: 84px;
   margin-left: -42px;

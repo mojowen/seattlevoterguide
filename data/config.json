@@ -1,6 +1,13 @@
 {
-	"url": "http://www.chicagovoterguide.org",
-	"title": "2015 Chicago Voter Guide",
-	"description": "Vote by Tuesday, April 7th in the Chicago City Runoff Election. Check out our voter guide to see who and what will be on your ballot.",
-	"image": "/images/sharable.png"
+	"url": "http://www.billingsvoterguide.org",
+	"title": "2015 Billings Voter Guide",
+	"description": "Vote by Tuesday, September 15th in the Billings Municipal Election. Check out our voter guide to see who and what will be on your ballot.",
+	"image": "/images/sharable.png",
+	"twitter_name": "forwardingmt",
+	"twitter_hashtag": "billingsvotes",
+	"date": "Tuesday, September 15th",
+	"repo": "https://github.com/mojowen/billingsvoterguide",
+	"city": "Billings",
+	"state": "Montana",
+	"state_abv": "MT"
 }

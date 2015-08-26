@@ -1,0 +1,29 @@
+@import 'settings';
+@import 'variables';
+@import 'reset';
+@import 'reset';
+@import 'type';
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0 auto;
+  background: $background url('/images/wrap.png');
+  padding: 30px 0;
+}
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1% 0;
+    color: $type;
+    text-align: center;
+    .section {
+        width: 90%;
+        padding: 2.5%;
+        margin: 1% auto;
+        border-radius: 4px;
+        background: white;
+    }
+    input { color: $emphasis; }
+    line-height: 2em;
+    form { margin: 20px 0; }
+}

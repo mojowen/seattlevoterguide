@@ -19,3 +19,8 @@
     gutter-width : 20px,
     vertical_align : top
 ));
+@include gridle_register_state (tablet , (
+    max-width : 720px,
+    gutter-width : 20px,
+    vertical_align : top
+));

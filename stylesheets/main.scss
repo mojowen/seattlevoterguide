@@ -1,41 +1,8 @@
-
 @import 'settings';
 @import 'variables';
 @import 'reset';
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,300);
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css');
-
-// Type
-h1 {
-    color: $emphasis;
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    text-shadow: $second-emphasis -1px 1px 1px;
-}
-h2 { color: lighten($second-emphasis, 20%); font-size: 1.5em; font-weight: 300; }
-h3 { color: $emphasis; text-transform: uppercase; }
-h4, h5 { font-weight: bold; }
-h1, h2, h3, h4, p { margin-bottom: 0.75em; }
-ul {
-    list-style: disc;
-    margin: 10px 0 0 20px;
-    @include gridle_state(tablet) { margin: 10px 0 0 10px; }
-    @include gridle_state(mobile) { margin: 10px 0 0 5px; }
-}
-div { position: relative; box-sizing: border-box;}
-p, li { line-height: 1.5em; }
-a {
-    &:hover, &:active {
-        text-decoration: underline;
-        color: lighter($emphasis, 10%);
-    }
-    &, &:visited {
-        color: darken($emphasis, 10%);;
-        text-decoration: none;
-    }
-}
+@import 'reset';
+@import 'type';
 
 // Mixins
 @mixin clear() {
@@ -119,12 +86,15 @@ body {
     padding: 30px 0;
     @include clear();
     .scroll {
-        @include gridle_state(tablet) {  overflow-y: scroll; }
+        overflow-y: scroll;
+        margin: 20px 0 50px;
         table {
             th .img {
                 @include frame(40px);
-                margin-left: 10px;
+                margin: 0 auto;
+                display: block;
             }
+            th h4 { font-size: 10px; }
             tr:nth-child(even) td { background: lighten($background, 30%); }
             td:first-child {
                 text-align: left;
@@ -150,10 +120,10 @@ body {
     }
 }
 .candidate {
-    @include gridle(10, tablet);
     @include gridle(6);
+    @include gridle(10, tablet);
     @include gridle_centered(tablet);
-    min-height: 320px;
+    min-height: 470px;
     margin-bottom: 50px;
 
     .social {
@@ -172,76 +142,16 @@ body {
             margin: 4px auto;
         }
     }
-    .bio, .endorsements {
-        padding-left: 0; padding-right: 0;
-    }
     .bio {
+        padding-left: 0;
+        padding-right: 0;
+        min-height: 170px;
         @include gridle(12, mobile);
-        @include gridle(5);
-    }
-    .endorsements {
-        @include gridle_centered(mobile);
-        @include gridle(12, mobile);
-        @include gridle(7);
-        padding-top: 10px;
+        @include gridle(6);
     }
     .img {
         @include frame(100px);
         margin: 0 auto;
-    }
-}
-.measure {
-    @include gridle(12);
-
-    .choice { margin: 30px 0; @include gridle(12); }
-    .thumb {
-        @include gridle(1);
-        @include gridle_centered(mobile);
-        @include gridle_state(mobile) { padding-bottom: 20px; }
-    }
-    .explanation {
-        @include gridle(6);
-        @include gridle(11, tablet);
-        @include gridle(12, mobile);
-        @include gridle_push(1, tablet);
-        @include gridle_push(0, mobile);
-    }
-    .endorsements {
-        @include gridle(5);
-        @include gridle(10, tablet);
-        @include gridle_push(2, tablet);
-        @include gridle_push(0, mobile);
-        @include gridle(12, mobile);
-        @include gridle_state(mobile) { margin-bottom: 40px; }
-    }
-    h4 { color: $second-emphasis; }
-    h2, h4, h5 { span { text-transform: uppercase; }}
-    span.fa {
-        width: 50px;
-        height: 50px;
-        border-radius: 50px;
-        margin: 10px 0 0 -30px;
-        &.no { background: $color-no; }
-        &.yes { background: $color-yes; }
-        text-align: center;
-        font-size: 30px;
-        color: white;
-        &:before { line-height: 50px; }
-    }
-    .recommendation {
-        text-align: left;
-        span.fa { margin: 0; }
-        span.yay-or-nay {
-            &.no { color: $color-no; }
-            &.yes { color: $color-yes; }
-        }
-        @include gridle_state(mobile) {
-            text-align: center;
-            span {
-                display: block;
-                margin: 30px auto !important;
-            }
-        }
     }
 }
 #search_form {
@@ -264,28 +174,34 @@ body {
     @include clear();
     margin-bottom: 30px;
 }
-#alderperson_list {
-    .alderperson {
-        @include gridle(6);
-        @include gridle(10, mobile);
-        text-align: center;
-        div.img {
-            @include frame(60px);
-            min-height: 60px;
-            margin: 0 auto;
-            display: block;
-        }
-        min-height: 160px;
-        margin-bottom: 40px;
-
-        a {
-            font-size: 12px;
-            padding: 0 4px;
-            &:before { margin-right: 2px; }
-        }
+.counselor {
+    @include gridle(4);
+    @include gridle(6, tablet);
+    @include gridle(10, mobile);
+    text-align: center;
+    div.img {
+        @include frame(60px);
+        min-height: 60px;
+        margin: 0 auto;
+        display: block;
     }
-    h3 { text-align: center; }
-    @include clear();
+    min-height: 160px;
+    margin-bottom: 40px;
+
+    a {
+        font-size: 12px;
+        padding: 0 4px;
+        &:before { margin-right: 2px; }
+    }
+    .bio {
+        margin: 20px 0;
+    }
+    min-height: 300px;
+    &.row-1 { @include gridle_push(4); }
+    &.row-2 {
+        @include gridle_push(2);
+        @include gridle_push(0, tablet);
+    }
 }
 .map_container {
     margin: 50px 0 0;
@@ -316,7 +232,6 @@ body {
 }
 a.vote_for {
     position: absolute;
-    bottom: -10px;
     left: 50%;
     width: 84px;
     margin-left: -42px;

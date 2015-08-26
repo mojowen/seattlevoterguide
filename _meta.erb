@@ -5,7 +5,11 @@
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@chicagovotes">
+  <meta name="twitter:site" content="@<%= @meta['twitter_name'] %>">
   <meta name="twitter:title" content="<%= @meta['title'] %>" />
+  <script type="text/javascript">
+    var related = "<%= @meta['twitter_name'] %>";
+    var hashtag = "<%= @meta['twitter_hashtag'] %>";
+  </script>
   <meta name="twitter:description" content="<%= @meta['description'] %>" />
   <meta name="twitter:image:src" content="<%= @meta['image'] %>" />
