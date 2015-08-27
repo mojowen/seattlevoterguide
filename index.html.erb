@@ -29,7 +29,7 @@
         </div>
         <% @districts.each do |district, candidates| %>
           <div class="district" data-district="<%= district %>">
-            <h3>District <%= district %>:</h3>
+            <h2>District <%= district %></h2>
             <% candidates.each do |counselor| %>
               <div class="counselor <%= "row-#{[nil,1,2][canddates.length]}" if candidates.length < 3 %>">
                 <h2><%= counselor['name'] %></h2>
@@ -51,7 +51,7 @@
                   <tr>
                     <th></th>
                     <% candidates.each do |counselor| %>
-                      <th>
+                      <th class="head">
                         <div class="img" style="background-image: url('<%= counselor["photo"] %>');" ></div>
                         <h4><%= counselor["name"] %></h4>
                       </th>
@@ -61,12 +61,19 @@
                 <tbody>
                   <% @questions.each do |question| %>
                     <tr>
-                      <td class="question"><%= question.capitalize %></td>
+                      <td class="question">
+                        <%= question.capitalize %>
+                        <% if candidates.reject{ |ca| ca[question.downcase+'--moreinfo'].empty? }.length > 0 %>
+                          <a class="click--read-more" href="#">more info</a>
+                        <% end %>
+                      </td>
                         <% candidates.each do |counselor| %>
                           <td>
                             <%= counselor[question.downcase] %>
                             <% unless counselor[question.downcase+'--moreinfo'].empty? %>
-                              <a class="read--more" href="#">Read More</a>
+                              <p class="the--read-more">
+                                <%= counselor[question.downcase+'--moreinfo'] %>
+                              </p>
                             <% end %>
                           </td>
                         <% end %>

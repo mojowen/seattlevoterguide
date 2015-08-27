@@ -89,6 +89,7 @@ body {
         overflow-y: auto;
         margin: 20px 0 50px;
         table {
+            th.head { width: 80px; }
             th .img {
                 @include frame(40px);
                 margin: 0 auto;
@@ -107,6 +108,20 @@ body {
                 line-height: 1.4em;
                 padding: 20px;
                 text-align: center;
+                position: relative;
+                .click--read-more {
+                    display: block;
+                    font-weight: normal;
+                    font-size: 10px;
+                    top: 50px;
+                    line-height: 1em;
+                }
+                .the--read-more {
+                    display: none;
+                    margin-top: 20px;
+                    font-size: 12px;
+                    text-align: left;
+                }
             }
         }
     }

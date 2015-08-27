@@ -17,7 +17,7 @@
             if (turf.inside(point, the_district)) {
                 var center = turf.centroid(the_district).geometry.coordinates
                 mapIt(the_district, center, [lng, lat]);
-                renderCounselors(the_district.properties.DIST_NUM.toString());
+                renderCounselors(the_district.properties.WARD.toString());
                 return the_district;
             }
         }
@@ -36,19 +36,15 @@
             zoom: 12,
             center: new google.maps.LatLng(center[1], center[0]),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            // scrollwheel: false,
+            scrollwheel: false,
             overviewMapControl: false,
             streetViewControl: false,
-            // zoomControl: false,
+            zoomControl: false,
             panControl: false,
             mapTypeControl: false,
-            // scaleControl: false,
+            scaleControl: false,
             draggable: true
         });
-
-        // for (var i in districts.features) {
-        //     map.data.addGeoJson(districts.features[i]);
-        // }
         map.data.setStyle({
             "strokeWeight": 1,
             "color": "red",
@@ -230,6 +226,28 @@
         });
         return false;
     }
+    function readMore() {
+        var question = this.parentElement,
+            row = question.parentElement,
+            allMores = document.body.querySelectorAll('.the--read-more'),
+            allClickers = document.body.querySelectorAll('.click--read-more'),
+            thisMores = row.querySelectorAll('.the--read-more')
+
+        for (var i = allMores.length - 1; i >= 0; i--) {
+            allMores[i].style.display = null
+        };
+        for (var i = allClickers.length - 1; i >= 0; i--) {
+            allClickers[i].style.display = null
+        };
+        for (var i = thisMores.length - 1; i >= 0; i--) {
+            thisMores[i].style.display = 'block'
+        };
+
+        try { ga('send', 'event', 'read-more', question.innerText.split('?')[0]); } catch(e) { }
+
+        this.style.display = 'none'
+        return false
+    }
     function log_zip(zip) {
         try { ga('send', 'event', 'lookup', zip); } catch(e) { }
     }
@@ -261,6 +279,9 @@
         current_onload()
 
         search_form.onsubmit = function() { searchSubmit.apply(this); return false; }
+
+        var readMores = document.body.querySelectorAll('.click--read-more')
+        for (var i = 0; i < readMores.length; i++) { readMores[i].onclick = readMore };
 
         tinyGET('/data/wards.json',{},
             function(data) { districts = data; when_ready(); });
