@@ -22,14 +22,14 @@
         <h1>Billings City Council</h1>
         <form id="search_form" class="grid-8 centered">
             <input placeholder="Enter Your Address" type="text" name="address">
-            <button type="submit">Find Your District</button>
+            <button type="submit">Find Your Ward</button>
         </form>
         <div class="map_container">
           <div id="map_canvas"></div>
         </div>
         <% @districts.each do |district, candidates| %>
           <div class="district" data-district="<%= district %>">
-            <h2>District <%= district %></h2>
+            <h2>Ward <%= district %></h2>
             <% candidates.each do |counselor| %>
               <div class="counselor <%= "row-#{[nil,1,2][canddates.length]}" if candidates.length < 3 %>">
                 <h2><%= counselor['name'] %></h2>
