@@ -41,7 +41,7 @@
                   <a target="_blank" class="fa fa-facebook-square" href="<%= counselor['facebook'] %>">Facebook</a>
                 <% end %>
                 <div class="bio"><%= counselor['why'] %></div>
-                <a class="vote_for" data-name="<%= counselor["name"] %>" data-link="/sharing/counselor/<%= district %>-<%= counselor['name'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>" data-office="Billings City Council" onclick="endorsementWidget(this)">endorse</a>
+                <a class="vote_for" data-name="<%= counselor["name"] %>" data-link="/sharing/counselors/<%= district %>-<%= counselor['name'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>.html" data-office="Billings City Council" onclick="endorsementWidget(this)">endorse</a>
               </div>
             <% end %>
             <div class="issues">

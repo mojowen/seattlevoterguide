@@ -25,7 +25,7 @@
     }
     function specifyWard(district_number) {
         var the_district = districts.features.filter( function(el) {
-                return el.properties.DIST_NUM == district_number; })[0],
+                return el.properties.WARD.toString() == district_number; })[0],
             center = turf.centroid(the_district).geometry.coordinates
         mapIt(the_district, center, center);
         renderCounselors(district_number);
