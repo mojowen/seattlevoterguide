@@ -23,6 +23,7 @@ task :candidates do
         candidate['photo'] = ("/images/counselors/"+
                               "#{candidate['last name'].capitalize}."+
                               "#{candidate['first name'].capitalize}.jpg")
+        candidate['photo'] = candidate['photo'].gsub(/[^A-z|\.|\/]/,'')
         candidates.push candidate
     end
     File.open('data/candidates.json','w') do |fl|

@@ -1434,7 +1434,8 @@ body {
         display: none;
         margin-top: 20px;
         font-size: 12px;
-        text-align: left; }
+        text-align: left;
+        white-space: pre-wrap; }
 
 .candidate, .measure {
   padding: 20px 0; }
