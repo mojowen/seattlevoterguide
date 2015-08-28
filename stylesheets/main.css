@@ -1409,7 +1409,8 @@ body {
       margin: 0 auto;
       display: block; }
     .issues .scroll table th h4 {
-      font-size: 10px; }
+      font-size: 10px;
+      margin: 4px; }
     .issues .scroll table tr:nth-child(even) td {
       background: #99ddec; }
     .issues .scroll table td:first-child {

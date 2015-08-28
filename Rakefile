@@ -18,8 +18,8 @@ task :candidates do
                 :headers => true) do |row|
         fields = row.fields.map{ |fd| (fd || '').strip }
         candidate = Hash[row.headers.map(&:downcase).map(&:strip).zip(fields)]
-        candidate['name'] = [candidate['first name'].capitalize,
-                             candidate['last name'].capitalize].join(' ')
+        candidate['name'] = [candidate['first name'],
+                             candidate['last name']].join(' ')
         candidate['photo'] = ("/images/counselors/"+
                               "#{candidate['last name'].capitalize}."+
                               "#{candidate['first name'].capitalize}.jpg")
