@@ -31,7 +31,7 @@
           <div class="district" data-district="<%= district %>">
             <h2>Ward <%= district %></h2>
             <% candidates.each do |counselor| %>
-              <div class="counselor <%= "row-#{[nil,1,2][canddates.length]}" if candidates.length < 3 %>">
+              <div class="counselor <%= "row-#{[nil,1,2][candidates.length]}" if candidates.length < 3 %>">
                 <h2><%= counselor['name'] %></h2>
                 <div class="img" style="background-image: url('<%= counselor["photo"] %>');" ></div>
                 <% unless counselor['website'].empty? %>
