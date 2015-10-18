@@ -18,6 +18,7 @@ task :candidates do
                 :headers => true) do |row|
         fields = row.fields.map{ |fd| (fd || '').strip }
         candidate = Hash[row.headers.map(&:downcase).map(&:strip).zip(fields)]
+        candidate['why'] = candidate['why'].split('-').map(&:strip).reject(&:empty?)
         candidate['name'] = [candidate['first name'],
                              candidate['last name']].join(' ')
         candidate['photo'] = ("/images/counselors/"+

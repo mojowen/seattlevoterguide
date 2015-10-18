@@ -1,13 +1,13 @@
 {
 	"url": "http://www.billingsvoterguide.org",
-	"title": "2015 Billings Voter Guide",
-	"description": "Vote by Tuesday, November 3rd in the Billings Municipal Election. Check out our voter guide to see who and what will be on your ballot.",
+	"title": "2015 Missoula Voter Guide",
+	"description": "Vote by Tuesday, November 3rd in the Missoula Municipal Election. Check out our voter guide to see who and what will be on your ballot.",
 	"image": "/images/sharable.png",
 	"twitter_name": "forwardingmt",
-	"twitter_hashtag": "billingsvotes",
+	"twitter_hashtag": "missoulavotes",
 	"date": "Tuesday, November 3rd",
-	"repo": "https://github.com/mojowen/billingsvoterguide",
-	"city": "Billings",
+	"repo": "https://github.com/mojowen/missoulavoterguide",
+	"city": "Missoula",
 	"state": "Montana",
 	"state_abv": "MT"
 }
