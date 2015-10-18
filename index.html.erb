@@ -47,7 +47,8 @@
                     <% end %>
                   </ul>
                   <br/>
-                  <p><strong>Fun Fact</strong>:<br/><%= counselor['fact'] %>
+                  <p><strong>Fun Fact</strong>:</p>
+                  <p><%= counselor['fact'] %></p>
                 </div>
                 <a class="vote_for" data-name="<%= counselor["name"] %>" data-link="/sharing/counselors/<%= district %>-<%= counselor['name'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>.html" data-office="Billings City Council" onclick="endorsementWidget(this)">endorse</a>
               </div>
