@@ -17,7 +17,7 @@
             if (turf.inside(point, the_district)) {
                 var center = turf.centroid(the_district).geometry.coordinates
                 mapIt(the_district, center, [lng, lat]);
-                renderCounselors(the_district.properties.WARD.toString());
+                renderCounselors(the_district.properties.Ward_Numbe.toString());
                 return the_district;
             }
         }
@@ -25,7 +25,7 @@
     }
     function specifyWard(district_number) {
         var the_district = districts.features.filter( function(el) {
-                return el.properties.WARD.toString() == district_number; })[0],
+                return el.properties.Ward_Numbe.toString() == district_number; })[0],
             center = turf.centroid(the_district).geometry.coordinates
         mapIt(the_district, center, center);
         renderCounselors(district_number);
