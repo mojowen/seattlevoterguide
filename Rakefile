@@ -23,8 +23,9 @@ task :candidates do
                              candidate['last name']].join(' ')
         candidate['photo'] = ("/images/counselors/"+
                               "#{candidate['last name'].capitalize}."+
-                              "#{candidate['first name'].capitalize}.jpg")
+                              "#{candidate['first name'].capitalize}")
         candidate['photo'] = candidate['photo'].gsub(/[^A-z|\.|\/]/,'')
+        candidate['photo'] = Dir[".#{candidate['photo']}*"].first
         candidates.push candidate
     end
     File.open('data/candidates.json','w') do |fl|
