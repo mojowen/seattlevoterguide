@@ -24,8 +24,9 @@ task :candidates do
         candidate['photo'] = ("/images/counselors/"+
                               "#{candidate['last name'].capitalize}."+
                               "#{candidate['first name'].capitalize}")
-        candidate['photo'] = candidate['photo'].gsub(/[^A-z|\.|\/]/,'')
-        candidate['photo'] = Dir[".#{candidate['photo']}*"].first
+        candidate['photo'] = candidate['photo'].gsub(/[^A-z|\.|\/|\s]/,'')
+        candidate['photo'] = Dir.glob(".#{candidate['photo']}*",
+                                      File::FNM_CASEFOLD).first
         candidates.push candidate
     end
     File.open('data/candidates.json','w') do |fl|
