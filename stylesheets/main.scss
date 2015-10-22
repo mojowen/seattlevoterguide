@@ -345,3 +345,50 @@ a.vote_for {
         }
     }
 }
+.measure {
+    @include gridle(12);
+
+    .choice { margin: 30px 0; @include gridle(12); }
+    .thumb {
+        @include gridle(1);
+        @include gridle_centered(mobile);
+        @include gridle_state(mobile) { padding-bottom: 20px; }
+    }
+    .explanation {
+        @include gridle(11);
+        @include gridle(11, tablet);
+        @include gridle(12, mobile);
+        @include gridle_push(1, tablet);
+        @include gridle_push(0, mobile);
+    }
+    h4 { color: $second-emphasis; }
+    h2, h4, h5 { span { text-transform: uppercase; }}
+    span.fa {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        margin: 10px 0 0 -30px;
+        &.no { background: $color-no; }
+        &.yes { background: $color-yes; }
+        text-align: center;
+        font-size: 30px;
+        color: white;
+        &:before { line-height: 50px; }
+    }
+    .recommendation {
+        text-align: left;
+        span.fa { margin: 0; }
+        span.yay-or-nay {
+            &.no { color: $color-no; }
+            &.yes { color: $color-yes; }
+        }
+        @include gridle_state(mobile) {
+            text-align: center;
+            span {
+                display: block;
+                margin: 30px auto !important;
+            }
+        }
+    }
+}
+

@@ -7,7 +7,7 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
-  <link rel="shortcut icon" href="/images/FMTSnowflake.gif" type="image/x-icon" />
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 <%= @meta_partial %>
 </head>
 <body>
@@ -17,9 +17,28 @@
       <h1 class="big">Voter Guide</h1>
       <h1>Vote by <%= @base.date %></h1>
     </div>
+    <div class="section">
+      <div class="inner">
+        <div class="about">
+          <p>This independent voter guide is designed to give you the quickest, most important information on your ballot and why it’s important to vote.</p>
+
+          <h3>About What’s Inside</h3>
+          <p>This non-partisan voter guide was developed around the Seattle Youth Agenda, a set of issues prioritized through surveying youth across Seattle and in collaboration with other youth organizations. We asked candidates questions about the Youth Agenda Issues; police accountability, housing accessibility, climate justice and youth employment.  The guide includes responses from city council candidates and information on ballot measures. This guide should not be viewed as an endorsement of any candidates or ballot measures. To get a more comprehensive voter guide, visit seattlevoterguide.org.</p>
+          <br />
+
+          <h3>Brought to you by</h3>
+          <div class="grid-12 clear">
+            <a target="_blank" href="htttp://neweracoloradoaction.org"><img class="grid-6 push-3" src="/images/logo.png"></a>
+          </div>
+          <p class="clear" style="margin-top: 100px;"><a href="http://washingtonbus.org/">The Washington Bus</a> is a non-partisan, non-profit, youth-driven organization that increases political access and participation for young people across Washington State. The Bus engages young people on their own terms, and helps them build their own power through political education, civic and cultural engagement, and hands-on democracy. We are of young people, by young people, for all people.</p>
+
+          <p style="font-size: 0.75em; text-align: center" class="grid-11 centered gutter-top clear">And you can find all the <a href="<%= @base.repo %>" target="_blank">code and whatever right here</a> and oh yeah it was built by <a target="_blank" href="http://scottduncombe.com">this person</a>.</p>
+        </div>
+      </div>
+    </div>
     <div class="section" id="counselors">
       <div class="inner">
-        <h1>Missoula City Council</h1>
+        <h1><%= @base.city %> City Council</h1>
         <form id="search_form" class="grid-8 centered">
             <input placeholder="Enter Your Address" type="text" name="address">
             <button type="submit">Find Your Ward</button>
@@ -29,26 +48,22 @@
         </div>
         <% @districts.each do |district, candidates| %>
           <div class="district" data-district="<%= district %>">
-            <h2>Ward <%= district %></h2>
+            <h2>District <%= district %>: <%= candidates.first['title'] %></h2>
             <% candidates.each do |counselor| %>
               <div class="counselor <%= "row-#{[nil,1,2][candidates.length]}" if candidates.length < 3 %>">
                 <h2><%= counselor['name'] %></h2>
                 <div class="img" style="background-image: url('<%= counselor["photo"] %>');" ></div>
-                <% unless counselor['website'].empty? %>
-                  <a target="_blank" class="fa fa-link" href="<%= counselor['website'] %>">Website</a>
-                <% end %>
-                <% unless counselor['facebook'].empty? %>
-                  <a target="_blank" class="fa fa-facebook-square" href="<%= counselor['facebook'] %>">Facebook</a>
-                <% end %>
-                <div class="bio"><strong>Priorities</strong>:
+                <div class="bio">
+                  <p><%= counselor['bio'] %></p>
+                  <p><strong>Supporters</strong>:</p>
                   <ul>
-                    <% counselor['why'].each do |priority| %>
-                      <li><%= priority.capitalize %></li>
+                    <% counselor['supporters'].each do |supporter| %>
+                      <li><%= supporter.capitalize %></li>
                     <% end %>
                   </ul>
                   <br/>
-                  <p><strong>Fun Fact</strong>:</p>
-                  <p><%= counselor['fact'] %></p>
+                  <p><strong>Tell us in a tweet, what are the greatest climate justice issues facing Seattle?</strong>:</p>
+                  <p><%= counselor['tweet'] %></p>
                 </div>
                 <a class="vote_for" data-name="<%= counselor["name"] %>" data-link="/sharing/counselors/<%= district %>-<%= counselor['name'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>.html" data-office="Billings City Council" onclick="endorsementWidget(this)">endorse</a>
               </div>
@@ -72,18 +87,10 @@
                     <tr>
                       <td class="question">
                         <%= question.capitalize %>
-                        <% if candidates.reject{ |ca| ca[question.downcase+'--moreinfo'].empty? }.length > 0 %>
-                          <a class="click--read-more" href="#">more info</a>
-                        <% end %>
                       </td>
                         <% candidates.each do |counselor| %>
                           <td>
                             <%= counselor[question.downcase] %>
-                            <% unless counselor[question.downcase+'--moreinfo'].empty? %>
-                              <p class="the--read-more">
-                                <%= counselor[question.downcase+'--moreinfo'] %>
-                              </p>
-                            <% end %>
                           </td>
                         <% end %>
                     </tr>
@@ -96,15 +103,28 @@
         <% end %>
       </div>
     </div>
-    <div class="section">
+    <div class="measures section">
       <div class="inner">
-        <div class="about">
-          <h3>Brought to you by</h3>
-          <div class="grid-12 clear">
-            <a target="_blank" href="http://forwardmontana.org/"><img class="grid-6 push-3" src="/images/logo.png"></a>
+        <h1>Ballot Measures</h1>
+        <% @measures.each do |title, choices| %>
+          <div class="measure" id="!<%= title.downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>">
+              <h2><%= title %></h2>
+              <h3>What it does</h3>
+              <p><%= choices.first['description'] %></p>
+              <% choices.each do |choice| %>
+                <div class="choice">
+                  <div class="thumb">
+                    <span class="fa <%= choice['choice'] %> fa-thumbs-<%= choice['choice'] == "yes" ? "up" : "down" %>"></span>
+                  </div>
+                  <div class="explanation">
+                    <h4>A <span class="yay-or-nay"><%= choice['choice'] %></span> Vote Means...</h4>
+                    <p><%= choice['explanation'] %></p>
+                  </div>
+                  <a type="button" class="vote_for" data-name="<%=  choice['choice'].upcase %>" data-link="/sharing/measure/<%=  choice['choice']+'-'+title.downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>" data-office="<%= title %>" onclick="endorsementWidget(this)">endorse</a>
+                </div>
+              <% end %>
           </div>
-          <p style="font-size: 0.75em; text-align: center" class="grid-11 centered gutter-top clear">And you can find all the <a href="<%= @base.repo %>" target="_blank">code and whatever right here</a> and oh yeah it was built by <a target="_blank" href="http://scottduncombe.com">this person</a>.</p>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

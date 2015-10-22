@@ -18,21 +18,30 @@ task :candidates do
                 :headers => true) do |row|
         fields = row.fields.map{ |fd| (fd || '').strip }
         candidate = Hash[row.headers.map(&:downcase).map(&:strip).zip(fields)]
-        candidate['why'] = candidate['why'].split(/-(\s|\n)/).map(&:strip).reject(&:empty?)
-        candidate['name'] = [candidate['first name'],
-                             candidate['last name']].join(' ')
-        candidate['photo'] = ("/images/counselors/"+
-                              "#{candidate['last name'].capitalize}."+
-                              "#{candidate['first name'].capitalize}")
-        candidate['photo'] = candidate['photo'].gsub(/[^A-z|\.|\/|\s]/,'')
-        candidate['photo'] = Dir.glob(".#{candidate['photo']}*",
+        candidate['supporters'] = candidate['supporters'].split(',').map(&:strip).reject(&:empty?)
+
+        names = candidate['name'].split(' ').join('*')
+        candidate['photo'] = Dir.glob("./images/counselors/*#{names}*.*",
                                       File::FNM_CASEFOLD).first
         candidates.push candidate
     end
     File.open('data/candidates.json','w') do |fl|
         fl.write(candidates.to_json)
     end
-    Rake::Task["all"]
+    Rake::Task[:all].invoke
+end
+
+task :measures do
+    measures = []
+    CSV.foreach("data/measures.csv", :headers => true) do |row|
+        fields = row.fields.map{ |fd| (fd || '').strip }
+        measure = Hash[row.headers.map(&:downcase).map(&:strip).zip(fields)]
+        measures.push measure
+    end
+    File.open('data/measures.json','w') do |fl|
+        fl.write(measures.to_json)
+    end
+    Rake::Task[:all].invoke
 end
 
 task :erb, :paths do |t,args|
@@ -59,13 +68,14 @@ task :all do
     """
     Rebuild all the HTML pages.
     """
-    Rake::Task["erb"].invoke Dir.glob("*.html.erb")
-    Rake::Task["sharing"].invoke
+    Rake::Task[:erb].invoke Dir.glob('*.html.erb')
+    Rake::Task[:sharing].invoke
 end
 
 task :sharing do
     build = {
-        'counselors' => JSON::parse(File.read('data/candidates.json'))
+        'counselors' => JSON::parse(File.read('data/candidates.json')),
+        'measures' => JSON::parse(File.read('data/measures.json'))
     }
 
     FileUtils.rm_r 'sharing' if Dir.exists?("sharing")

@@ -1,13 +1,13 @@
 {
-	"url": "http://www.missoulavoterguide.org",
-	"title": "2015 Missoula Voter Guide",
-	"description": "Vote by Tuesday, November 3rd in the Missoula Municipal Election. Check out our voter guide to see who and what will be on your ballot.",
+	"url": "http://www.seattlevoterguide.org",
+	"title": "2015 Seattle Voter Guide",
+	"description": "Vote by Tuesday, November 3rd in the Seattle Municipal Election. Check out our voter guide to see who and what will be on your ballot.",
 	"image": "/images/sharable.png",
 	"twitter_name": "forwardingmt",
 	"twitter_hashtag": "missoulavotes",
 	"date": "Tuesday, November 3rd",
-	"repo": "https://github.com/mojowen/missoulavoterguide",
-	"city": "Missoula",
-	"state": "Montana",
-	"state_abv": "MT"
+	"repo": "https://github.com/mojowen/seattlevoterguide",
+	"city": "Seattle",
+	"state": "Washington",
+	"state_abv": "WA"
 }

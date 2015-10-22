@@ -5,7 +5,10 @@ def candidate_data
     candidates = JSON::parse(File.read('data/candidates.json'))
     questions = candidates.first.keys.reject{ |k| k[-1] != "?" }.map(&:to_s)
     districts = candidates.group_by{ |ca| ca['ward'] }
-    return districts, questions
+    [districts, questions]
+end
+def measure_data
+    JSON::parse(File.read('data/measures.json')).group_by{ |ca| ca['title'] }
 end
 
 def _get_ordinal n
@@ -40,6 +43,7 @@ class Controller
 
     def index
         @meta_partial = set_meta
+        @measures = measure_data
         @districts, @questions = candidate_data
     end
 
@@ -54,6 +58,21 @@ class Controller
             'image' => "#{@base.url}/#{counselor['photo']}",
             'title' => "Vote #{name} for Ward #{office}",
             'description' => "Vote #{name} for #{office} - and you should too",
+        })
+    end
+
+    def measures measure
+        @anchor =  (measure['title'].downcase.gsub(' ','-')
+                    .gsub(/[^a-zA-Z0-9\-]/,''))
+        @filename = "measures/#{measure['choice']}-#{@anchor}"
+        @meta_partial = set_meta({
+            'url' => "#{@base.url}/sharing/#{@filename}",
+            'image' => "#{@base.url}/images/#{measure['choice']}.png",
+            'title' => "Vote #{measure['choice']} for #{measure['title']}",
+            'description' => ("I'm supporting #{measure['choice']} on "
+                              "#{measure['title']}. A "+
+                              "#{measure['choice']} Vote means: "+
+                              "#{measure['explanation']}"),
         })
     end
 
