@@ -1,5 +1,5 @@
 (function() {
-    var geocoder = new google.maps.Geocoder(),
+        geocoder = new google.maps.Geocoder(),
         districts = false,
         callback = false
 
@@ -17,7 +17,7 @@
             if (turf.inside(point, the_district)) {
                 var center = turf.centroid(the_district).geometry.coordinates
                 mapIt(the_district, center, [lng, lat]);
-                renderCounselors(the_district.properties.Ward_Numbe.toString());
+                renderCounselors(the_district.properties.dist_name.toString());
                 return the_district;
             }
         }
@@ -25,7 +25,7 @@
     }
     function specifyWard(district_number) {
         var the_district = districts.features.filter( function(el) {
-                return el.properties.Ward_Numbe.toString() == district_number; })[0],
+                return el.properties.dist_name.toString() == district_number; })[0],
             center = turf.centroid(the_district).geometry.coordinates
         mapIt(the_district, center, center);
         renderCounselors(district_number);
@@ -78,7 +78,7 @@
         var districts = counselors.querySelectorAll('.district')
         for (var i = districts.length - 1; i >= 0; i--) {
             var div_district = districts[i].getAttribute('data-district')
-            if( div_district !== district ) {
+            if( div_district !== district && div_district < 8 ) {
                 districts[i].style.display = 'none';
             }
         };

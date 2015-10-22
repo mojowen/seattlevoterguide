@@ -41,7 +41,7 @@
         <h1><%= @base.city %> City Council</h1>
         <form id="search_form" class="grid-8 centered">
             <input placeholder="Enter Your Address" type="text" name="address">
-            <button type="submit">Find Your Ward</button>
+            <button type="submit">Find Your District</button>
         </form>
         <div class="map_container">
           <div id="map_canvas"></div>
@@ -62,7 +62,7 @@
                     <% end %>
                   </ul>
                   <br/>
-                  <p><strong>Tell us in a tweet, what are the greatest climate justice issues facing Seattle?</strong>:</p>
+                  <p><strong>Tell us in a tweet, what are the greatest climate justice issues facing Seattle?</strong></p>
                   <p><%= counselor['tweet'] %></p>
                 </div>
                 <a class="vote_for" data-name="<%= counselor["name"] %>" data-link="/sharing/counselors/<%= district %>-<%= counselor['name'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>.html" data-office="Billings City Council" onclick="endorsementWidget(this)">endorse</a>
