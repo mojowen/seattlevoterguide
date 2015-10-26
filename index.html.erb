@@ -77,8 +77,9 @@
                     <% end %>
                   </ul>
                   <br/>
-                  <p><strong>Tell us in a tweet, what are the greatest climate justice issues facing Seattle?</strong></p>
-                  <p><%= counselor['tweet'] %></p>
+                  <p><strong><%= counselor['question'] %></strong></p>
+                  <% usernames = Hash[ counselor['tweet'].scan(/@(\w+)/i).map{ |name| [name[0], "<strong><a href='http://twitter.com/#{name[0]}'>@#{name[0]}:</a></strong>"] } ] %>
+                  <p><%= counselor['tweet'].split(' ').map{ |word| usernames[word.gsub(/[^a-zA-Z\d\s_]/,'')] || word }.join(' ') %></p>
                 </div>
                 <a class="vote_for" data-name="<%= counselor["name"] %>" data-link="/sharing/counselors/<%= district %>-<%= counselor['name'].downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'') %>.html" data-office="Billings City Council" onclick="endorsementWidget(this)">endorse</a>
               </div>
