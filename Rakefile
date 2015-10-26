@@ -20,7 +20,7 @@ task :candidates do
         candidate = Hash[row.headers.map(&:downcase).map(&:strip).zip(fields)]
         candidate['supporters'] = candidate['supporters'].split(',').map(&:strip).reject(&:empty?)
 
-        names = candidate['name'].split(' ').map{ |nm| "#{nm}*"}
+        names = candidate['name'].split(' ').map{ |nm| "#{nm.gsub("'",'')}" }.join('*')
         candidate['photo'] = Dir.glob("./images/counselors/#{names}*.*",
                                       File::FNM_CASEFOLD).first
         candidates.push candidate
